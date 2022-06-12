@@ -1,15 +1,16 @@
 package com.sb.tutorials.springboot.finalcourse.firstwebapp.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Todo {
     private int id;
     private String user;
     private String desc;
-    private Date targetDate;
+    private LocalDate targetDate;
     private boolean isDone;
 
-    public Todo(int id, String user, String desc, Date targetDate, boolean isDone) {
+    public Todo(int id, String user, String desc, LocalDate targetDate, boolean isDone) {
         this.id = id;
         this.user = user;
         this.desc = desc;
@@ -42,11 +43,11 @@ public class Todo {
         this.desc = desc;
     }
 
-    public Date getTargetDate() {
+    public LocalDate getTargetDate() {
         return targetDate;
     }
 
-    public void setTargetDate(Date targetDate) {
+    public void setTargetDate(LocalDate targetDate) {
         this.targetDate = targetDate;
     }
 

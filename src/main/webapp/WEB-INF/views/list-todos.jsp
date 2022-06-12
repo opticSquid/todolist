@@ -11,6 +11,7 @@
     <title>Todos List</title>
 </head>
 <body>
+<button><a href="/addTodos">Click here to add new Todo in the List</a> </button>
 <h1>Here are the list of your todos</h1>
 ${todos}
 </body>

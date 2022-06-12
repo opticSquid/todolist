@@ -11,8 +11,8 @@
     <groupId>com.sb.tutorials.springboot.finalcourse</groupId>
     <artifactId>fiorstwebapp</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>fiorstwebapp</name>
-    <description>fiorstwebapp</description>
+    <name>firstwebapp</name>
+    <description>firstwebapp</description>
     <properties>
         <java.version>17</java.version>
     </properties>
