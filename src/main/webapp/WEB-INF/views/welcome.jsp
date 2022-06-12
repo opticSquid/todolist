@@ -8,9 +8,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html>
 <head>
-    <title>Hello</title>
+    <title>Thanks for filling out the form</title>
 </head>
 <body>
-<h1>Hello India ${name}</h1>
+<h1>Thanks ${name} for filling out the form regards</h1>
+<h3><a href="/list">Click here to manage your todos</a></h3>
 </body>
 </html>
