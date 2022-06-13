@@ -29,6 +29,7 @@
             <td>${todo.id}</td>
             <td>${todo.desc}</td>
             <td>${todo.targetDate}</td>
+            <td>${todo.done}</td>
         </tr>
     </c:forEach>
     </tbody>
