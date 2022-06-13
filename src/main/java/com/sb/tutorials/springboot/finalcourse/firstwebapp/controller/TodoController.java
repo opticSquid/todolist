@@ -23,6 +23,7 @@ public class TodoController {
         //Getting the value of attribute name from session which was passed to session from LoginController and got here by @SessionAttributes("name") annotation.
         //I'm getting the value from model here.
         String user = (String) model.get("name");
+        System.out.println("user name: "+user);
         model.put("todos", todoService.retrieveTodos(user));
         return "list-todos";
     }
@@ -33,17 +34,9 @@ public class TodoController {
     }
 
     @RequestMapping(value = "/addTodos", method = RequestMethod.POST)
-    public String addPostTodos(@RequestParam String desc, @RequestParam String targetDate, @RequestParam String isDone, ModelMap model) {
+    public String addPostTodos(@RequestParam String desc, @RequestParam String targetDate, @RequestParam(required = false) String isDone, ModelMap model) {
         LocalDate date = LocalDate.parse(targetDate);
         boolean checked = Objects.equals(isDone, "on") ;
-        todoService.addTodo((String) model.get("name"), desc, date, checked);
-        return "list-todos";
-    }
-    //Function overloading because when isDone checkbox is not checked then the argument is getting passed only
-    @RequestMapping(value = "/addTodos", method = RequestMethod.POST)
-    public String addPostTodos(@RequestParam String desc, @RequestParam String targetDate, ModelMap model) {
-        LocalDate date = LocalDate.parse(targetDate);
-        boolean checked = false;
         todoService.addTodo((String) model.get("name"), desc, date, checked);
         return "list-todos";
     }
