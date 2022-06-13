@@ -25,6 +25,7 @@ public class TodoController {
         String user = (String) model.get("name");
         System.out.println("user name: "+user);
         model.put("todos", todoService.retrieveTodos(user));
+        System.out.println("User todos:\n"+todoService.retrieveTodos(user));
         return "list-todos";
     }
 
