@@ -39,7 +39,13 @@ public class TodoController {
         LocalDate date = LocalDate.parse(targetDate);
         boolean checked = Objects.equals(isDone, "on") ;
         todoService.addTodo((String) model.get("name"), desc, date, checked);
-        return "list-todos";
+        return "redirect:/list";
+    }
+
+    @RequestMapping("/delete-todo")
+    public String deleteTodo(@RequestParam Integer id) {
+        todoService.deleteTodo(id);
+        return "redirect:/list";
     }
 }
 
