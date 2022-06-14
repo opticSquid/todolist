@@ -7,10 +7,14 @@ public class Todo {
     private int id;
     private String user;
     private String desc;
-    private LocalDate targetDate;
+    private Date targetDate;
     private boolean isDone;
 
-    public Todo(int id, String user, String desc, LocalDate targetDate, boolean isDone) {
+    public Todo() {
+        super();
+    }
+
+    public Todo(int id, String user, String desc, Date targetDate, boolean isDone) {
         this.id = id;
         this.user = user;
         this.desc = desc;
@@ -43,11 +47,11 @@ public class Todo {
         this.desc = desc;
     }
 
-    public LocalDate getTargetDate() {
+    public Date getTargetDate() {
         return targetDate;
     }
 
-    public void setTargetDate(LocalDate targetDate) {
+    public void setTargetDate(Date targetDate) {
         this.targetDate = targetDate;
     }
 
@@ -55,8 +59,31 @@ public class Todo {
         return isDone;
     }
 
-    public void setDone(boolean done) {
-        isDone = done;
+    public void setDone(boolean isDone) {
+        this.isDone = isDone;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + id;
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        Todo other = (Todo) obj;
+        return id == other.id;
     }
 
     @Override

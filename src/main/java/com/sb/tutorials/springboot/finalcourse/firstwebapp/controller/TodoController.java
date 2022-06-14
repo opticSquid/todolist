@@ -1,16 +1,17 @@
 package com.sb.tutorials.springboot.finalcourse.firstwebapp.controller;
 
+import com.sb.tutorials.springboot.finalcourse.firstwebapp.model.Todo;
 import com.sb.tutorials.springboot.finalcourse.firstwebapp.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import java.time.LocalDate;
-import java.util.Objects;
+import java.util.Date;
 
 @Controller
 @SessionAttributes("name")
@@ -23,22 +24,26 @@ public class TodoController {
         //Getting the value of attribute name from session which was passed to session from LoginController and got here by @SessionAttributes("name") annotation.
         //I'm getting the value from model here.
         String user = (String) model.get("name");
-        System.out.println("user name: "+user);
+        System.out.println("user name: " + user);
         model.put("todos", todoService.retrieveTodos(user));
-        System.out.println("User todos:\n"+todoService.retrieveTodos(user));
+        System.out.println("User todos:\n" + todoService.retrieveTodos(user));
         return "list-todos";
     }
 
     @RequestMapping(value = "/addTodos", method = RequestMethod.GET)
-    public String addTodos() {
+    public String showAddTodos(ModelMap model) {
+        model.addAttribute("todo", new Todo(0, (String) model.get("name"), "Default Desc",
+                new Date(), false));
         return "add-todos";
     }
 
     @RequestMapping(value = "/addTodos", method = RequestMethod.POST)
-    public String addPostTodos(@RequestParam String desc, @RequestParam String targetDate, @RequestParam(required = false) String isDone, ModelMap model) {
-        LocalDate date = LocalDate.parse(targetDate);
-        boolean checked = Objects.equals(isDone, "on") ;
-        todoService.addTodo((String) model.get("name"), desc, date, checked);
+    public String addPostTodos(Todo todo, ModelMap model, BindingResult result) {
+        if (result.hasErrors()) {
+            return "todo";
+        }
+        todoService.addTodo((String) model.get("name"), todo.getDesc(), new Date(),
+                false);
         return "redirect:/list";
     }
 
