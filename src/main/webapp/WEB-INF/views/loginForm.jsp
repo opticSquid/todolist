@@ -13,7 +13,7 @@
 </head>
 <body>
 <form method="post" class="container">
-    <div class="row alert alert-danger">${errMsg}</div>
+    <div style="display: ${errHidden};" class="row alert alert-danger">${errMsg}</div>
     <div class="mb-3">
         <label class="form-label" for="uname">Username</label>
         <input class="form-control" type="text" id="uname" name="uname"/>

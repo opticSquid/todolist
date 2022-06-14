@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import javax.validation.Valid;
 import java.util.Date;
 
 @Controller
@@ -37,17 +38,20 @@ public class TodoController {
         return "add-todos";
     }
 
+    //Adding @Valid annotation means that class level validations will be applied to the model attribute as well
     @RequestMapping(value = "/addTodos", method = RequestMethod.POST)
-    public String addPostTodos(Todo todo, ModelMap model, BindingResult result) {
+    public String addPostTodo(@Valid Todo todo, ModelMap model, BindingResult result) {
+
         if (result.hasErrors()) {
-            return "todo";
+            return "add-todos";
         }
+
         todoService.addTodo((String) model.get("name"), todo.getDesc(), new Date(),
                 false);
         return "redirect:/list";
     }
 
-    @RequestMapping("/delete-todo")
+    @RequestMapping(value = "/delete-todo", method = RequestMethod.GET)
     public String deleteTodo(@RequestParam Integer id) {
         todoService.deleteTodo(id);
         return "redirect:/list";

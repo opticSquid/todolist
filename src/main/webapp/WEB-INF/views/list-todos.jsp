@@ -14,8 +14,7 @@
 </head>
 <body class="container">
 <div class="row">
-    <button class="btn btn-success"><a href="/addTodos" style="text-decoration: none; color: white"
-                                       class="stretched-link">Click here to add
+    <button class="btn btn-success"><a href="/addTodos" style="text-decoration: none; color: white">Click here to add
         new Todo in the List</a></button>
 </div>
 

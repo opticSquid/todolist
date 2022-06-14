@@ -16,7 +16,8 @@ public class LoginController {
     private LoginService loginService;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String loginController() {
+    public String loginController(ModelMap model) {
+        model.put("errHidden","none");
         return "loginForm";
     }
 
@@ -27,6 +28,7 @@ public class LoginController {
             model.put("name",uname);
             return "welcome";
         } else {
+            model.put("errHidden","block");
             model.put("errMsg","Username or password incorrect");
             return "loginForm";
         }

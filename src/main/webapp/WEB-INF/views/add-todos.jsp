@@ -17,6 +17,7 @@
     <fieldset class="mb-3">
         <form:label class="form-label" for="desc" path="desc">Course Name</form:label>
         <form:input class="form-control" id="desc" type="text" name="desc" path="desc" required="required"/>
+        <form:errors cssClass="text-warning" path="desc"/>
     </fieldset>
 <%--    <fieldset class="mb-3">--%>
 <%--        <form:label class="form-label" for="targetDate" path="targetDate">Date</form:label>--%>

@@ -1,11 +1,14 @@
 package com.sb.tutorials.springboot.finalcourse.firstwebapp.model;
 
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.Date;
 
 public class Todo {
     private int id;
     private String user;
+    //Validation to make desc have at least size of 6
+    @Size(min = 6, message = "Enter at least 6 characters")
     private String desc;
     private Date targetDate;
     private boolean isDone;
