@@ -9,19 +9,22 @@
 <html>
 <head>
     <title>Login</title>
+    <link rel="stylesheet" href="webjars/bootstrap/5.1.3/css/bootstrap.min.css"/>
 </head>
 <body>
-<h1 style="color: red;">${errMsg}</h1>
-<form method="post">
-    <div>
-        <label for="uname">Username</label>
-        <input type="text" id="uname" name="uname"/>
+<form method="post" class="container">
+    <div class="row alert alert-danger">${errMsg}</div>
+    <div class="mb-3">
+        <label class="form-label" for="uname">Username</label>
+        <input class="form-control" type="text" id="uname" name="uname"/>
     </div>
     <div>
-        <label for="upass">Password</label>
-        <input type="password" id="upass" name="upass"/>
+        <label class="form-label" for="upass">Password</label>
+        <input class="form-control" type="password" id="upass" name="upass"/>
     </div>
-    <button type="submit">Login</button>
+    <button class="btn btn-success" type="submit">Login</button>
 </form>
+<script src="webjars/popper.js/2.9.3/umd/popper.js"></script>
+<script src="webjars/bootstrap/5.1.3/js/bootstrap.min.js"></script>
 </body>
 </html>
