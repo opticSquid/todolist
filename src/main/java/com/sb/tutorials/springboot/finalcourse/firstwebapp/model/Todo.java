@@ -1,7 +1,6 @@
 package com.sb.tutorials.springboot.finalcourse.firstwebapp.model;
 
 import javax.validation.constraints.Size;
-import java.time.LocalDate;
 import java.util.Date;
 
 public class Todo {

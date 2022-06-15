@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 <head>
     <title>Todos List</title>
@@ -33,7 +34,7 @@
         <tr>
             <th scope="row">${todo.id}</th>
             <td>${todo.desc}</td>
-            <td>${todo.targetDate}</td>
+            <td><fmt:formatDate pattern="dd/MM/yyyy" value="${todo.targetDate}"/></td>
             <td>${todo.done}</td>
             <td>
                 <a type="button" href="/update-todo?id=${todo.id}" class="btn btn-warning">update</a>
