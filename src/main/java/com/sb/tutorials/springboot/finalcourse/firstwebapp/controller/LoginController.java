@@ -17,6 +17,7 @@ public class LoginController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginController(ModelMap model) {
+        model.put("title","New Login");
         model.put("errHidden","none");
         return "loginForm";
     }

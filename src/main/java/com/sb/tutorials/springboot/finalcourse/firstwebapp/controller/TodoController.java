@@ -33,6 +33,7 @@ public class TodoController {
         //I'm getting the value from model here.
         String user = (String) model.get("name");
         System.out.println("user name: " + user);
+        model.put("title","Todo List");
         model.put("todos", todoService.retrieveTodos(user));
         System.out.println("User todos:\n" + todoService.retrieveTodos(user));
         return "list-todos";
@@ -40,6 +41,7 @@ public class TodoController {
 
     @RequestMapping(value = "/addTodos", method = RequestMethod.GET)
     public String showAddTodos(ModelMap model) {
+        model.put("title","New Todo");
         model.addAttribute("todo", new Todo(0, (String) model.get("name"), "Default Desc",
                 new Date(), false));
         return "add-todos";
@@ -61,6 +63,7 @@ public class TodoController {
     @RequestMapping(value = "/update-todo", method = RequestMethod.GET)
     public String showUpdateTodo(@RequestParam Integer id, ModelMap model) {
         Todo todo = todoService.retrieveTodo(id);
+        model.put("title","Update Todo");
         model.put("todo", todo);
         return "add-todos";
     }
