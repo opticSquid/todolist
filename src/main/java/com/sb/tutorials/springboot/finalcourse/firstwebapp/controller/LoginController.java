@@ -25,6 +25,7 @@ public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String loginPostController(@RequestParam String uname, @RequestParam String upass, ModelMap model) {
         if (loginService.validate(uname, upass)) {
+            model.put("title","Welcome");
             //Making name persist between different requests by the same user using @SessionAttributes at class level and passing the value name
             model.put("name",uname);
             return "welcome";
