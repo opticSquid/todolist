@@ -31,7 +31,7 @@ public class TodoController {
     public String listTodos(ModelMap model) {
         //Getting the value of attribute name from session which was passed to session from LoginController and got here by @SessionAttributes("name") annotation.
         //I'm getting the value from model here.
-        String user = (String) model.get("name");
+        String user = (String) getName(model);
         System.out.println("user name: " + user);
         model.put("title","Todo List");
         model.put("todos", todoService.retrieveTodos(user));
@@ -39,10 +39,14 @@ public class TodoController {
         return "list-todos";
     }
 
+    private String getName(ModelMap model) {
+        return (String) model.get("name");
+    }
+
     @RequestMapping(value = "/addTodos", method = RequestMethod.GET)
     public String showAddTodos(ModelMap model) {
         model.put("title","New Todo");
-        model.addAttribute("todo", new Todo(0, (String) model.get("name"), "Default Desc",
+        model.addAttribute("todo", new Todo(0, getName(model), "Default Desc",
                 new Date(), false));
         return "add-todos";
     }
@@ -55,7 +59,7 @@ public class TodoController {
             return "add-todos";
         }
 
-        todoService.addTodo((String) model.get("name"), todo.getDesc(), todo.getTargetDate(),
+        todoService.addTodo(getName(model), todo.getDesc(), todo.getTargetDate(),
                 false);
         return "redirect:/list";
     }
@@ -70,7 +74,7 @@ public class TodoController {
 
     @RequestMapping(value = "/update-todo", method = RequestMethod.POST)
     public String postUpdateTodo(@Valid Todo todo, BindingResult result, ModelMap model) {
-        todo.setUser((String) model.get("name"));
+        todo.setUser(getName(model));
         if (result.hasErrors()) {
             return "add-todos";
         }
