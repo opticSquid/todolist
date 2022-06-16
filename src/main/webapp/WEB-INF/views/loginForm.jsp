@@ -6,12 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Login</title>
-    <link rel="stylesheet" href="webjars/bootstrap/5.1.3/css/bootstrap.min.css"/>
-</head>
-<body>
+<%@include file="commons/header.jspf"%>
+<%@ include file="commons/navigation.jspf"%>
 <form method="post" class="container">
     <div style="display: ${errHidden};" class="row alert alert-danger">${errMsg}</div>
     <div class="mb-3">
@@ -24,7 +20,4 @@
     </div>
     <button class="btn btn-success" type="submit">Login</button>
 </form>
-<script src="webjars/popper.js/2.9.3/umd/popper.js"></script>
-<script src="webjars/bootstrap/5.1.3/js/bootstrap.min.js"></script>
-</body>
-</html>
+<%@ include file="commons/footer.jspf"%>
