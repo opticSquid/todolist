@@ -2,6 +2,8 @@ package com.sb.tutorials.springboot.finalcourse.firstwebapp.controller;
 
 import com.sb.tutorials.springboot.finalcourse.firstwebapp.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,11 +16,20 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
+    //Welcome page
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String loginController(ModelMap model) {
         model.put("title", "Welcome");
-        model.put("name", "user");
+        model.put("name", getLoggedinUserName());
         model.put("errHidden", "none");
         return "welcome";
+    }
+
+    private String getLoggedinUserName() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+            return ((UserDetails) principal).getUsername();
+        }
+        return principal.toString();
     }
 }

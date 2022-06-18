@@ -4,25 +4,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @Configuration
-@EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-    //Create User - in28Minutes/dummy
+    //Create User - Soumalya/test
     @Autowired
     public void configureGlobalSecurity(AuthenticationManagerBuilder auth)
             throws Exception {
         auth.inMemoryAuthentication()
-                .withUser("in28Minutes").password("{noop}dummy")
+                .withUser("Soumalya").password("{noop}test")
                 .roles("USER", "ADMIN");
     }
-
+    // the user session is stored in a cookie clear the session cookie using dev tools and retry to test the feature
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers("/login", "/h2-console/**").permitAll()
-                .antMatchers("/", "/*todo*/**").access("hasRole('USER')").and()
+                .antMatchers("/","/*-todo*/**").access("hasRole('USER')").and()
                 .formLogin();
 
         http.csrf().disable();
