@@ -5,7 +5,7 @@
 <%@ include file="commons/navigation.jspf"%>
 <div class="container">
     <div class="row">
-        <button class="btn btn-success"><a href="/addTodos" style="text-decoration: none; color: white">Click here to
+        <button class="btn btn-success"><a href="/add-todo" style="text-decoration: none; color: white">Click here to
             add
             new Todo in the List</a></button>
     </div>

@@ -1,7 +1,5 @@
 package com.sb.tutorials.springboot.finalcourse.firstwebapp.controller;
 
-import com.sb.tutorials.springboot.finalcourse.firstwebapp.service.LoginService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -12,13 +10,11 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
 @SessionAttributes("name")
-public class LoginController {
-    @Autowired
-    private LoginService loginService;
+public class WelcomeController {
 
     //Welcome page
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String loginController(ModelMap model) {
+    public String showWelcomeController(ModelMap model) {
         model.put("title", "Welcome");
         model.put("name", getLoggedinUserName());
         model.put("errHidden", "none");
