@@ -89,6 +89,10 @@ public class TodoController {
 
     @RequestMapping(value = "/delete-todo", method = RequestMethod.GET)
     public String deleteTodo(@RequestParam Integer id) {
+        // Stopping from deleting Todos that does not belong to them
+        if(id<=3) {
+            throw new RuntimeException("Permission Denied");
+        }
         todoService.deleteTodo(id);
         return "redirect:/list-todo";
     }
